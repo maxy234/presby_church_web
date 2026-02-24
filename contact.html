@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Presbyterian Church of Ghana</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background: linear-gradient(rgba(0, 51, 160, 0.9), rgba(206, 17, 38, 0.8)), url('images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--pure-white);
+            padding: 150px 0 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .contact-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .contact-info-section {
+            padding: 80px 0;
+            background: var(--off-white);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: var(--pure-white);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .info-icon {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--pure-white);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .info-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .info-card a {
+            color: var(--primary-red);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form-section {
+            padding: 80px 0;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            background: var(--pure-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form {
+            padding: 50px;
+        }
+
+        .contact-form h2 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary-red);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--pure-white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .form-sidebar {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--pure-white);
+            padding: 50px 30px;
+        }
+
+        .form-sidebar h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-info {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-info i {
+            width: 25px;
+        }
+
+        .office-hours {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .office-hours li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .office-hours li:last-child {
+            border-bottom: none;
+        }
+
+        .map-section {
+            padding: 0 0 80px;
+        }
+
+        .map-container {
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .faq-section {
+            padding: 80px 0;
+            background: var(--off-white);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            background: var(--pure-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: linear-gradient(to right, var(--primary-blue), var(--primary-red));
+            color: var(--pure-white);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--pure-white);
+        }
+
+        .faq-answer.show {
+            padding: 20px;
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--pure-white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 15px 30px;
+            background: var(--pure-white);
+            color: var(--primary-red);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        @media screen and (max-width: 768px) {
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Church Logo" class="logo-img">
+                <span>Presbyterian Church of Ghana</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-lock"></i> Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>We'd love to hear from you. Reach out with any questions or prayer requests</p>
+        </div>
+    </section>
+
+    <!-- Contact Information Cards -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card animate-on-scroll">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Us</h3>
+                    <p>123 Independence Avenue</p>
+                    <p>Accra, Ghana</p>
+                    <p>P.O. Box GP 1234</p>
+                </div>
+
+                <div class="info-card animate-on-scroll">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>Office: <a href="tel:+233302123456">+233 30 212 3456</a></p>
+                    <p>Pastor: <a href="tel:+233242345678">+233 24 234 5678</a></p>
+                    <p>Emergency: <a href="tel:+233277456789">+233 27 745 6789</a></p>
+                </div>
+
+                <div class="info-card animate-on-scroll">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p><a href="mailto:info@pcg.org.gh">info@pcg.org.gh</a></p>
+                    <p><a href="mailto:pastor@pcg.org.gh">pastor@pcg.org.gh</a></p>
+                    <p><a href="mailto:youth@pcg.org.gh">youth@pcg.org.gh</a></p>
+                </div>
+
+                <div class="info-card animate-on-scroll">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Office Hours</h3>
+                    <p>Mon-Fri: 9:00 AM - 5:00 PM</p>
+                    <p>Saturday: 10:00 AM - 2:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="prayer">Prayer Request</option>
+                                <option value="visit">Pastoral Visit</option>
+                                <option value="wedding">Wedding Inquiry</option>
+                                <option value="baptism">Baptism Request</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="form-sidebar">
+                    <h3>Quick Connect</h3>
+                    <div class="sidebar-info">
+                        <p><i class="fas fa-phone-alt"></i> +233 30 212 3456</p>
+                        <p><i class="fas fa-envelope"></i> info@pcg.org.gh</p>
+                        <p><i class="fas fa-clock"></i> Response within 24hrs</p>
+                    </div>
+
+                    <h3>Office Hours</h3>
+                    <ul class="office-hours">
+                        <li><span>Monday</span> <span>9am - 5pm</span></li>
+                        <li><span>Tuesday</span> <span>9am - 5pm</span></li>
+                        <li><span>Wednesday</span> <span>9am - 5pm</span></li>
+                        <li><span>Thursday</span> <span>9am - 5pm</span></li>
+                        <li><span>Friday</span> <span>9am - 5pm</span></li>
+                        <li><span>Saturday</span> <span>10am - 2pm</span></li>
+                        <li><span>Sunday</span> <span>Closed</span></li>
+                    </ul>
+
+                    <div style="margin-top: 30px;">
+                        <h3>Emergency Contact</h3>
+                        <p style="margin-top: 10px;">For pastoral emergencies after hours, please call: <strong>+233 24 000 1111</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.403453891622!2d-0.1879!3d5.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMzMnMDAuMCBOIDDCsDExJzE2LjQiIFc!5e0!3m2!1sen!2sgh!4v1620000000000!5m2!1sen!2sgh" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--primary-blue);">Frequently Asked Questions</h2>
+            <div class="divider"></div>
+
+            <div class="faq-grid">
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What time are your Sunday services?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We have three services every Sunday: 6:30 AM (Traditional), 9:00 AM (Contemporary), and 11:30 AM (Youth Service).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is there parking available?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we have a large parking lot behind the church building with security personnel on duty during services.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do you have programs for children?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we have Sunday School during the 9:00 AM service and special children's events throughout the month.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How can I become a member?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer new member classes on the first Saturday of each month. Contact the church office to register.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <i class="fas fa-envelope-open-text" style="font-size: 3rem; margin-bottom: 20px;"></i>
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get weekly updates, sermon notes, and church announcements</p>
+            
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="images/logo.png" alt="Logo" class="footer-logo" onerror="this.src='https://via.placeholder.com/80?text=PCG'">
+                    <p>Presbyterian Church of Ghana<br>Worshiping God since 1828</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                       <a href="https://wa.me/233532802304"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.youtube.com/@maxykeys.youtubechannel"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/opokumaxwell256?igsh=c2thaXQwNGx6b2oy"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Presbyterian Church of Ghana. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('show');
+        }
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Newsletter Form
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            this.reset();
+        });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

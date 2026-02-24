@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Presbyterian Church of Ghana</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Services Page Specific Styles */
+        .services-hero {
+            background: linear-gradient(rgba(0, 51, 160, 0.9), rgba(206, 17, 38, 0.8)), url('images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--pure-white);
+            padding: 150px 0 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .services-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .services-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .schedule-section {
+            padding: 80px 0;
+        }
+
+        .schedule-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 30px;
+            border: none;
+            background: var(--pure-white);
+            color: var(--primary-blue);
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-red);
+            color: var(--pure-white);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: var(--pure-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--pure-white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .service-header i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .service-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .service-body {
+            padding: 25px;
+        }
+
+        .service-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .service-info i {
+            width: 25px;
+            color: var(--primary-red);
+            margin-right: 10px;
+        }
+
+        .service-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--off-white);
+            color: var(--primary-blue);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .weekly-schedule {
+            background: var(--off-white);
+            padding: 60px 0;
+        }
+
+        .schedule-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            background: var(--pure-white);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 5px solid var(--primary-red);
+        }
+
+        .schedule-item:hover {
+            transform: translateX(10px);
+        }
+
+        .schedule-day {
+            min-width: 120px;
+            font-weight: bold;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+
+        .schedule-details {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .schedule-details h4 {
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .schedule-time {
+            color: var(--primary-red);
+            font-weight: 600;
+        }
+
+        .special-services {
+            padding: 80px 0;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background: var(--pure-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .event-card:hover {
+            transform: scale(1.03);
+        }
+
+        .event-date {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--pure-white);
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .event-details {
+            padding: 20px;
+        }
+
+        .event-details h3 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .event-details p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--primary-red);
+            font-size: 0.9rem;
+        }
+
+        .event-meta i {
+            margin-right: 5px;
+        }
+
+        .sacraments-section {
+            background: var(--pure-white);
+            padding: 80px 0;
+        }
+
+        .sacraments-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .sacrament-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: var(--off-white);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .sacrament-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .sacrament-icon {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: var(--pure-white);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-size: 3rem;
+        }
+
+        .sacrament-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .sacrament-card p {
+            color: var(--text-light);
+        }
+
+        .download-section {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary-red);
+            color: var(--pure-white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: var(--transition);
+        }
+
+        .download-btn:hover {
+            background: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        @media screen and (max-width: 768px) {
+            .schedule-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .schedule-day {
+                margin-bottom: 10px;
+            }
+            
+            .sacraments-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Church Logo" class="logo-img">
+                <span>Presbyterian Church of Ghana</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-lock"></i> Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="container">
+            <h1>Worship Services & Schedule</h1>
+            <p>Join us as we gather to worship, learn, and grow together in faith</p>
+        </div>
+    </section>
+
+    <!-- Schedule Tabs -->
+    <section class="schedule-section">
+        <div class="container">
+            <div class="schedule-tabs">
+                <button class="tab-btn active" onclick="filterSchedule('sunday')">Sunday Services</button>
+                <button class="tab-btn" onclick="filterSchedule('weekly')">Weekly Programs</button>
+                <button class="tab-btn" onclick="filterSchedule('special')">Special Services</button>
+            </div>
+
+            <!-- Sunday Services Grid -->
+            <div id="sunday-services" class="schedule-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-header">
+                        <i class="fas fa-sun"></i>
+                        <h3>Early Morning Service</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-info">
+                            <i class="fas fa-clock"></i>
+                            <span>6:30 AM - 8:00 AM</span>
+                        </div>
+                        <div class="service-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Main Sanctuary</span>
+                        </div>
+                        <div class="service-info">
+                            <i class="fas fa-user"></i>
+                            <span>Rev. Dr. Kwame Asante</span>
+                        </div>
+                        <span class="service-tag">Traditional Worship</span>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-header">
+                        <i class="fas fa-church"></i>
+                        <h3>Morning Service</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-info">
+                            <i class="fas fa-clock"></i>
+                            <span>9:00 AM - 11:00 AM</span>
+                        </div>
+                        <div class="service-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Main Sanctuary</span>
+                        </div>
+                        <div class="service-info">
+                            <i class="fas fa-user"></i>
+                            <span>Rev. Mary Oforiwaa</span>
+                        </div>
+                        <span class="service-tag">Contemporary Worship</span>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-header">
+                        <i class="fas fa-users"></i>
+                        <h3>Youth Service</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-info">
+                            <i class="fas fa-clock"></i>
+                            <span>11:30 AM - 1:30 PM</span>
+                        </div>
+                        <div class="service-info">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Youth Center</span>
+                        </div>
+                        <div class="service-info">
+                            <i class="fas fa-user"></i>
+                            <span>Rev. Daniel Mensah</span>
+                        </div>
+                        <span class="service-tag">Youth & Young Adults</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weekly Programs (Hidden by default) -->
+            <div id="weekly-programs" style="display: none;">
+                <div class="schedule-list">
+                    <div class="schedule-item animate-on-scroll">
+                        <div class="schedule-day">Monday</div>
+                        <div class="schedule-details">
+                            <h4>Women's Fellowship</h4>
+                            <p>Prayer and Bible study for women</p>
+                        </div>
+                        <div class="schedule-time">10:00 AM - 12:00 PM</div>
+                    </div>
+                    
+                    <div class="schedule-item animate-on-scroll">
+                        <div class="schedule-day">Tuesday</div>
+                        <div class="schedule-details">
+                            <h4>Men's Fellowship</h4>
+                            <p>Discipleship and accountability group</p>
+                        </div>
+                        <div class="schedule-time">6:30 PM - 8:00 PM</div>
+                    </div>
+                    
+                    <div class="schedule-item animate-on-scroll">
+                        <div class="schedule-day">Wednesday</div>
+                        <div class="schedule-details">
+                            <h4>Bible Study & Prayer Meeting</h4>
+                            <p>In-depth Bible study and corporate prayer</p>
+                        </div>
+                        <div class="schedule-time">6:30 PM - 8:30 PM</div>
+                    </div>
+                    
+                    <div class="schedule-item animate-on-scroll">
+                        <div class="schedule-day">Thursday</div>
+                        <div class="schedule-details">
+                            <h4>Choir Practice</h4>
+                            <p>Worship team rehearsal</p>
+                        </div>
+                        <div class="schedule-time">5:00 PM - 7:00 PM</div>
+                    </div>
+                    
+                    <div class="schedule-item animate-on-scroll">
+                        <div class="schedule-day">Friday</div>
+                        <div class="schedule-details">
+                            <h4>Youth Meeting</h4>
+                            <p>Games, worship, and fellowship</p>
+                        </div>
+                        <div class="schedule-time">5:00 PM - 7:00 PM</div>
+                    </div>
+                    
+                    <div class="schedule-item animate-on-scroll">
+                        <div class="schedule-day">Saturday</div>
+                        <div class="schedule-details">
+                            <h4>Community Outreach</h4>
+                            <p>Serving our local community</p>
+                        </div>
+                        <div class="schedule-time">8:00 AM - 12:00 PM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Services (Hidden by default) -->
+            <div id="special-services" style="display: none;">
+                <div class="event-grid">
+                    <div class="event-card animate-on-scroll">
+                        <div class="event-date">MAR 25</div>
+                        <div class="event-details">
+                            <h3>Good Friday Service</h3>
+                            <p>Commemorating the crucifixion of Jesus Christ</p>
+                            <div class="event-meta">
+                                <span><i class="fas fa-clock"></i> 10:00 AM</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Main Sanctuary</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card animate-on-scroll">
+                        <div class="event-date">MAR 27</div>
+                        <div class="event-details">
+                            <h3>Easter Sunday</h3>
+                            <p>Celebrating the resurrection of our Lord</p>
+                            <div class="event-meta">
+                                <span><i class="fas fa-clock"></i> 8:00 AM & 10:30 AM</span>
+                                <span><i class="fas fa-map-marker-alt"></i> All Locations</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card animate-on-scroll">
+                        <div class="event-date">MAY 12</div>
+                        <div class="event-details">
+                            <h3>Mothers' Day Service</h3>
+                            <p>Honoring our mothers and mother figures</p>
+                            <div class="event-meta">
+                                <span><i class="fas fa-clock"></i> 9:00 AM</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Main Sanctuary</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card animate-on-scroll">
+                        <div class="event-date">JUN 16</div>
+                        <div class="event-details">
+                            <h3>Fathers' Day Service</h3>
+                            <p>Celebrating our fathers and father figures</p>
+                            <div class="event-meta">
+                                <span><i class="fas fa-clock"></i> 9:00 AM</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Main Sanctuary</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sacraments Section -->
+    <section class="sacraments-section">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--primary-blue);">Sacraments & Ordinances</h2>
+            <div class="divider"></div>
+            <div class="sacraments-grid">
+                <div class="sacrament-card animate-on-scroll">
+                    <div class="sacrament-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Baptism</h3>
+                    <p>Baptism is conducted on the first Sunday of each month. Please contact the church office for preparation classes.</p>
+                </div>
+                <div class="sacrament-card animate-on-scroll">
+                    <div class="sacrament-icon">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <h3>Holy Communion</h3>
+                    <p>Celebrated on the first Sunday of every month during all services. All believers are welcome to partake.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Bulletin -->
+    <section class="download-section">
+        <div class="container">
+            <i class="fas fa-download" style="font-size: 3rem; margin-bottom: 20px;"></i>
+            <h2>Download Weekly Bulletin</h2>
+            <p>Get the order of service, announcements, and sermon notes</p>
+            <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> Download Bulletin (PDF)</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="images/logo.png" alt="Logo" class="footer-logo" onerror="this.src='https://via.placeholder.com/80?text=PCG'">
+                    <p>Presbyterian Church of Ghana<br>Worshiping God since 1828</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                       <a href="https://wa.me/233532802304"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.youtube.com/@maxykeys.youtubechannel"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/opokumaxwell256?igsh=c2thaXQwNGx6b2oy"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Presbyterian Church of Ghana. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab filtering functionality
+        function filterSchedule(type) {
+            // Update active tab
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Show/hide sections
+            document.getElementById('sunday-services').style.display = type === 'sunday' ? 'grid' : 'none';
+            document.getElementById('weekly-programs').style.display = type === 'weekly' ? 'block' : 'none';
+            document.getElementById('special-services').style.display = type === 'special' ? 'grid' : 'none';
+        }
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>
